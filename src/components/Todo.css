@@ -1,0 +1,40 @@
+.addBtn{
+    color : rgb(255, 255, 255);
+}
+.container{
+    margin: auto;
+    margin-left: 18.5%;
+     display: flex;
+    justify-content: space-between;
+    border-top: 1px solid lightblue;
+    border-bottom: 1px solid lightblue;
+    width: 68%;
+    min-height: 50px;
+}
+.input-group{
+    width: 55%;
+    margin: auto;
+}
+.inputBody{
+    margin-left: 1%;
+}
+h5{
+    margin-top: 2%;
+}
+.btn-sm{
+    height: 35px;
+    margin-top: 1.5%;
+}
+.statusBtn{
+    margin-top: 5%;
+}
+#headings {
+    display: flex;
+    justify-content: space-between;
+    width: 66.5%;
+    margin-left: 19.5%;
+    margin-bottom: 1%;
+}
+.prev, .next {
+    margin-bottom: 5%;
+}
