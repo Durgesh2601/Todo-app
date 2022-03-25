@@ -32,9 +32,9 @@ export function Todo() {
     }).then(getData);
   };
   const handleDelete = (id) => {
-    fetch(`https://myfake-server.herokuapp.com/todos/${id}`, { method: "DELETE" }).then(() =>
-      getData(page)
-    );
+    fetch(`https://myfake-server.herokuapp.com/todos/${id}`, {
+      method: "DELETE",
+    }).then(() => getData(page));
   };
   const handleToggle = (id, status) => {
     const data = {
@@ -52,32 +52,65 @@ export function Todo() {
       <br />
       <TodoInput handleClick={handleClick} />
       <br />
-      <div id="headings">
-        <h4>#</h4>
-        <h3>Title</h3>
-        <h3>Task</h3>
-        <h3>Status</h3>
-        <h3>Delete</h3>
-      </div>
-      {todo.map((e, i) => {
-        return (
-          <div className="container">
-            <TodoItem
-              handleToggle={handleToggle}
-              handleDelete={handleDelete}
-              title={e.item_title}
-              status={e.status}
-              text={e.text1}
-              id={e.id}
-              i={i}
-            />
-          </div>
-        );
-      })}
+      <h4
+        style={
+          todo.length === 0
+            ? { visibility: "visible" }
+            : { visibility: "hidden" }
+        }
+      >
+        Looks like there is nothing in your todo list today.
+        <br />
+        Please add some tasks!
+      </h4>
+      <table
+        style={
+          todo.length > 0 ? { visibility: "visible" } : { visibility: "hidden" }
+        }
+        className="table table-success table-striped"
+      >
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Title</th>
+            <th>Task</th>
+            <th>Status</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          {todo.map((e, i) => {
+            return (
+              <>
+                <tr>
+                  <TodoItem
+                    handleToggle={handleToggle}
+                    handleDelete={handleDelete}
+                    title={e.item_title}
+                    status={e.status}
+                    text={e.text1}
+                    id={e.id}
+                    i={i}
+                  />
+                </tr>
+              </>
+            );
+          })}
+        </tbody>
+      </table>
       <br />
-      <p>Page : {page}</p>
+      <p
+        style={
+          todo.length > 0 ? { visibility: "visible" } : { visibility: "hidden" }
+        }
+      >
+        Page : {page}
+      </p>
       <div
-        class="btn-group"
+        style={
+          todo.length > 0 ? { visibility: "visible" } : { visibility: "hidden" }
+        }
+        className="btn-group"
         role="group"
         aria-label="Basic mixed styles example"
       >
@@ -85,13 +118,16 @@ export function Todo() {
           disabled={page === 1}
           type="button"
           className="btn btn-secondary btn-sm prev"
-          onClick={() => setPage(page - 1)}>
+          onClick={() => setPage(page - 1)}
+        >
           Prev
         </button>
         <button
+        disabled = {todo.length < 3 ? true : false} 
           type="button"
           className="btn btn-success btn-sm next"
-          onClick={() => setPage(page + 1)}>
+          onClick={() => setPage(page + 1)}
+        >
           Next
         </button>
       </div>

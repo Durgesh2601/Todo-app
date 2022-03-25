@@ -5,7 +5,7 @@ export const TodoInput = ({ handleClick }) => {
   const [text, setText] = useState("");
   return (
     <>
-      <div class="input-group flex-nowrap mb-4">
+      <div className="input-group flex-nowrap mb-4">
         <input
           type="text"
           className="form-control inputTitle"

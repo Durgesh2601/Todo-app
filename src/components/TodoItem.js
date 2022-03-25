@@ -6,30 +6,29 @@ export const TodoItem = ({
   text,
   id,
   handleToggle,
-  i,
+  i
 }) => {
   return (
     <>
-      <h5>{i + 1}</h5>
-      <h5
-        style={
+    <td>
+      {i+1}
+    </td>
+    <td style={
           status
             ? { textDecoration: "line-through" }
             : { textDecoration: "none" }
-        }
-      >
+        }>
         {title}
-      </h5>
-      <h5
-        style={
+    </td>
+    <td  style={
           status
             ? { textDecoration: "line-through" }
             : { textDecoration: "none" }
-        }
-      >
-        {text}
-      </h5>
-      <button
+        }>
+          {text}
+    </td>
+    <td>
+    <button
         style={
           status
             ? { background: "#198754", color: "white", outline: "none" }
@@ -39,15 +38,18 @@ export const TodoItem = ({
         className="btn btn-secondary btn-sm"
         onClick={() => handleToggle(id, status)}
       >
-        {status ? "Done" : "Mark as done"}
+        {status ? "Yet to be done" : "Mark as done"}
       </button>
-      <button
+    </td>
+    <td>
+    <button
         type="button"
         className="btn btn-danger btn-sm"
         onClick={() => handleDelete(id)}
       >
         Delete
       </button>
+    </td>
     </>
   );
 };
