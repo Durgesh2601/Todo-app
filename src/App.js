@@ -12,3 +12,5 @@ function App() {
 }
 
 export default App;
+
+///A todo app using React.js and Bootstrap
