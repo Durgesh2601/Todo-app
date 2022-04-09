@@ -6,9 +6,11 @@ import "./Todo.css";
 export function Todo() {
   const [todo, setTodo] = useState([]);
   const [page, setPage] = useState(1);
+  const [length, setLength] = useState(0);
 
   useEffect(() => {
     getData(page);
+    getLength();
   }, [page]);
   const getData = (page = 1) => {
     fetch(`https://myfake-server.herokuapp.com/todos?_page=${page}&_limit=3`)
@@ -17,6 +19,12 @@ export function Todo() {
         setTodo(res);
       });
   };
+  const getLength = () => {
+    fetch("https://myfake-server.herokuapp.com/todos").then((d) => d.json()).then((res) => {
+      setLength(res.length);
+    })
+  }
+  console.log(length)
   const handleClick = (title, text) => {
     const data = {
       item_title: title,
@@ -123,7 +131,7 @@ export function Todo() {
           Prev
         </button>
         <button
-        disabled = {todo.length < 3 ? true : false} 
+        disabled = {page === Math.ceil(length/3)} 
           type="button"
           className="btn btn-success btn-sm next"
           onClick={() => setPage(page + 1)}

@@ -11,7 +11,7 @@ export const TodoItem = ({
   return (
     <>
     <td>
-      {i+1}
+      {id}
     </td>
     <td style={
           status
